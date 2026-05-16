@@ -6,7 +6,9 @@
 
 This contains everything you need to run your app locally.
 
-View your app in AI Studio: https://ai.studio/apps/ce35db54-57e3-4b62-82ce-b8deb642bb69
+
+
+Deployed link: https://ais-pre-dudi23en744g4u5bblxwtm-481120172216.europe-west2.run.app/
 
 ## Demo Images
 
