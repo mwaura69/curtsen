@@ -8,6 +8,11 @@ This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/ce35db54-57e3-4b62-82ce-b8deb642bb69
 
+## Demo Images
+
+![Demo 1](src/public/demo_01.png)
+![Demo 2](src/public/demo_02.png)
+
 ## Run Locally
 
 **Prerequisites:**  Node.js
@@ -42,3 +47,4 @@ Navigating Nairobi's informal matatu network is challenging due to the lack of o
 - **MaryAnn** 
 - **Fredrick** 
 - **Sam** 
+
