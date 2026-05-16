@@ -52,7 +52,9 @@ Navigating Nairobi's informal matatu network is challenging due to the lack of o
 
 
 ## Solution Plan
-```You are designing and implementing the Matatu Route Intelligence Agent — an AI-powered transit reasoning system for Nairobi’s informal public transport network.
+
+```
+You are designing and implementing the Matatu Route Intelligence Agent — an AI-powered transit reasoning system for Nairobi’s informal public transport network.
 
 This is NOT a normal chatbot.
 This is NOT Google Maps.
