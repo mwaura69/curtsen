@@ -1,0 +1,6 @@
+{
+  "name": "MatatuMind",
+  "description": "Urban Mobility Intelligence System for Nairobi's informal matatu network. AI-powered route reasoning, graph-based transit exploration, and real-time commuter signals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
