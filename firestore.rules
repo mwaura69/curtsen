@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Primitives
+    function isSignedIn() { return request.auth != null; }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    
+    // Mobility Signals: Public read, authenticated write
+    match /mobility_signals/{signalId} {
+      allow read: if true;
+      allow create: if isSignedIn() 
+        && isValidMobilitySignal(incoming())
+        && incoming().userId == request.auth.uid;
+      allow delete: if isSignedIn() && existing().userId == request.auth.uid;
+    }
+
+    // Route Intelligence: Public read, authenticated logic (managed by server Admin SDK usually)
+    match /routes_intel/{slug} {
+      allow read: if true;
+      allow create, update: if isSignedIn() && isValidRouteIntel(incoming());
+    }
+
+    function isValidMobilitySignal(data) {
+      return data.keys().hasAll(['type', 'message', 'severity', 'timestamp', 'userId'])
+        && data.keys().size() == 5
+        && data.type in ['traffic', 'confirmation', 'alert', 'weather']
+        && data.severity in ['low', 'medium', 'high', 'critical']
+        && data.message is string && data.message.size() <= 500
+        && data.timestamp == request.time
+        && data.userId == request.auth.uid;
+    }
+
+    function isValidRouteIntel(data) {
+      return data.keys().hasAll(['slug', 'origin', 'destination', 'intelligence', 'lastUpdated'])
+        && data.slug is string && data.slug.size() <= 200
+        && data.origin is string && data.origin.size() <= 100
+        && data.destination is string && data.destination.size() <= 100
+        && data.intelligence is map;
+    }
+  }
+}

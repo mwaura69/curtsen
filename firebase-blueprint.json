@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "RouteIntel": {
+      "title": "Route Intelligence",
+      "description": "AI-calculated route intelligence for specific corridors.",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "intelligence": { "type": "object" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["slug", "origin", "destination", "intelligence", "lastUpdated"]
+    },
+    "MobilitySignal": {
+      "title": "Mobility Signal",
+      "description": "Real-time commuter report or system-generated alert.",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["traffic", "confirmation", "alert", "weather"] },
+        "message": { "type": "string" },
+        "severity": { "type": "string", "enum": ["low", "medium", "high"] },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" }
+      },
+      "required": ["type", "message", "severity", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/routes_intel/{slug}": {
+      "schema": "RouteIntel",
+      "description": "Collection of cached AI route logic."
+    },
+    "/mobility_signals/{signalId}": {
+      "schema": "MobilitySignal",
+      "description": "Real-time feed of city-wide transit events."
+    }
+  }
+}

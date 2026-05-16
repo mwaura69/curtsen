@@ -39,6 +39,42 @@
   50% { opacity: 0.7; transform: scale(1.05); }
 }
 
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes dash-scroll {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 3s infinite ease-in-out;
+}
+
+.animate-scan {
+  animation: scan-line 2s infinite linear;
+}
+
+.animate-dash {
+  animation: dash-scroll 0.5s infinite linear;
+}
+
+.timeline-line {
+  @apply absolute left-[11px] md:left-[19px] top-8 bottom-0 w-px bg-gradient-to-b from-brand-blue/50 via-brand-purple/50 to-transparent;
+}
+
+.timeline-dot {
+  @apply absolute left-[7px] md:left-[15px] w-2.5 h-2.5 rounded-full bg-brand-blue shadow-[0_0_10px_rgba(37,99,235,0.8)] z-10;
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 16, 32, 0.9) 100%);
+}
+
+.confidence-ring {
+  stroke-dasharray: 100;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-out;
 }
